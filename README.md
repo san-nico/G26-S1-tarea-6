@@ -1,0 +1,2 @@
+# G26-S1-tarea-6
+Tarea 6: JS REPASO: LÓGICA, ARRAYS Y ASINCRONÍA
