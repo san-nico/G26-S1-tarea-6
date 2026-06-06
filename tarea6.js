@@ -14,7 +14,7 @@ console.log(productos.map((p) => ({ ...p, precio: p.precio * 0.8 })));
 
 //punto 3
 console.log("3. reduce() — calcula el valor total del inventario");
-console.log(productos.reduce((total, p) => total + p.precio, 0));
+console.log(productos.reduce((total, p) => total + p.precio * p.stock, 0));
 
 //punto 4
 console.log("4. find() — encuentra el producto más caro");
@@ -33,8 +33,6 @@ console.log(
   ),
 );
 
-//punto 5
-console.log("5. async/await — simula guardar el inventario con una promesa");
 // punto 5
 console.log("5. async/await — guardar el inventario con una promesa real");
 
