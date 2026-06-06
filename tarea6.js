@@ -33,32 +33,37 @@ console.log(
   ),
 );
 
-//punto 5
-console.log("5. async/await — simula guardar el inventario con una promesa");
 // punto 5
 console.log("5. async/await — guardar el inventario con una promesa real");
 
-async function guardarYMostrar(productos) {
+function guardarYMostrar(productos) {
   const dummy_url = "https://www.softwarelibrechile.cl/tarea6-json-test.php";
-  try {
-    const response = await fetch(dummy_url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(productos),
+
+  fetch(dummy_url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(productos),
+  })
+    .then((response) => {
+      console.log("Código de estado del servidor:", response.status);
+
+      if (!response.ok) {
+        throw new Error("Error al guardar inventario");
+      }
+
+      return response.json();
+    })
+    .then((resultado) => {
+      console.log("Respuesta del servidor:", resultado);
+    })
+    .catch((error) => {
+      console.error("Error:", error.message);
+    })
+    .finally(()=>{
+        console.error("Consulta terminada");
     });
-
-    // Mostrar siempre el código de estado
-    console.log("Código de estado del servidor:", response.status);
-
-    if (!response.ok) {
-      throw new Error("Error al guardar inventario");
-    }
-
-    const resultado = await response.json();
-    console.log("Respuesta del servidor:", resultado);
-  } catch (error) {
-    console.error("Error:", error.message);
-  }
 }
 
 // Ejecutar directamente
